@@ -35,7 +35,7 @@ const StyledDrawer = styled(Drawer, {
 }));
 
 
-export default function ProfileSidebar() {
+export default function ProfileSidebar({ children }: { children?: React.ReactNode }) {
     const [open, setOpen] = useState(true);
 
     return (
@@ -47,11 +47,8 @@ export default function ProfileSidebar() {
             </Box>
 
             {open && (
-                <Box sx={{ p: 2 }}>
-                    <Typography variant="h6">Your Bio</Typography>
-                    <Typography variant="body2">
-                        A short description about you. Background, skills, or friendly intro.
-                    </Typography>
+                <Box sx={{ display: "flex", p: 2, flexDirection: "column", gap: 2, alignItems: "center", widht: "100%", height: "100%" }}>
+                    {children}
                 </Box>
             )}
         </StyledDrawer>
