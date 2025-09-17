@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
 
