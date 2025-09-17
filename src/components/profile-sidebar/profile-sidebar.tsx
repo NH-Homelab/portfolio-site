@@ -20,7 +20,6 @@ const StyledDrawer = styled(Drawer, {
 })<{ open: boolean }>(({ theme, open }) => ({
     position: "relative",
     flexShrink: 0,
-    whiteSpace: "nowrap",
     flexBasis: "40%",
     maxWidth: open ? "40%" : `${collapsedWidth}px`,
     transition: theme.transitions.create("max-width", {
