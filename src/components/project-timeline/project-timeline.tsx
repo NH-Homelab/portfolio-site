@@ -23,9 +23,11 @@ export default async function ProjectTimeline({ projectAPI }: ProjectTimelinePro
             position="right"
             sx={{
                 alignSelf: "center",
+                flexGrow: 0,
                 "& .MuiTimelineItem-root": {
                     minHeight: "auto",
                     "&::before": { display: "none" },
+                    width: "fit-content",
                 },
             }}
         >
