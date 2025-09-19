@@ -1,9 +1,9 @@
 import styles from "./page.module.css";
-import ProjectTimeline from "@/components/project-timeline/project-timeline";
 import ProfileSidebar from "@/components/profile-sidebar/profile-sidebar";
 import ProfileContent from "@/components/profile-content/profile-content";
-import { mockProjectAPI } from "@/lib/api/projects/mockProjects";
 import { Box } from "@mui/material";
+import MilestoneTimeline from "@/components/milestone-timeline/milestone-timeline";
+import { staticMilestoneAPI } from "@/lib/api/milestones/staticMilestones";
 
 export default function Home() {
   return (
@@ -12,8 +12,15 @@ export default function Home() {
         <ProfileSidebar>
           <ProfileContent />
         </ProfileSidebar>
-        <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-          <ProjectTimeline projectAPI={mockProjectAPI} />
+        <Box sx={{
+          flexGrow: 1,
+          display: "flex",
+          justifyContent: "center",
+          overflowY: "auto",
+          height: "100vh",
+          maxHeight: "100vh",
+        }}>
+          <MilestoneTimeline milestoneAPI={staticMilestoneAPI} />
         </Box>
       </main>
     </div >

@@ -1,7 +1,5 @@
-import ProjectCard from "@/components/project-card/project-card";
-import { ProjectAPI, Project } from "@/lib/types/projects";
-
-import { Typography } from "@mui/material";
+import { MilestoneAPI, Milestone } from "@/lib/types/milestone";
+import { Typography, Chip, Box } from "@mui/material";
 
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -10,19 +8,45 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import { TimelineOppositeContent } from "@mui/lab";
+import MilestoneCard from "../milestone-card/milestone-card";
 
-interface ProjectTimelineProps {
-    projectAPI: ProjectAPI;
+interface MilestoneTimelineProps {
+    milestoneAPI: MilestoneAPI;
 }
 
-export default async function ProjectTimeline({ projectAPI }: ProjectTimelineProps) {
-    const projects = await projectAPI.getProjects();
+export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimelineProps) {
+    const milestones = await milestoneAPI.getMilestones();
+
+    // Sort milestones by date (most recent first)
+    const sortedMilestones = [...milestones].sort((a, b) =>
+        b.date.getTime() - a.date.getTime()
+    );
+
+    // Format date for display
+    const formatDate = (date: Date): string => {
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
+
+    const getMilestoneIcon = (milestone: Milestone) => {
+        switch (milestone.type.type) {
+            case "certificate":
+                return "🎓";
+            case "project":
+                return "💼";
+            case "milestone":
+            default:
+                return "🎯";
+        }
+    };
 
     return (
         <Timeline
             position="right"
             sx={{
-                alignSelf: "center",
                 flexGrow: 0,
                 "& .MuiTimelineItem-root": {
                     minHeight: "auto",
@@ -31,8 +55,8 @@ export default async function ProjectTimeline({ projectAPI }: ProjectTimelinePro
                 },
             }}
         >
-            {projects.map((project: Project, index: number) => (
-                <TimelineItem key={project.id}>
+            {sortedMilestones.map((milestone: Milestone, index: number) => (
+                <TimelineItem key={`${milestone.title}-${index}`}>
                     <TimelineOppositeContent
                         sx={{
                             alignItems: "center",
@@ -40,10 +64,11 @@ export default async function ProjectTimeline({ projectAPI }: ProjectTimelinePro
                             flex: "0 0 auto",
                             p: 0,
                             mr: 2,
+                            width: { xs: 80, sm: 100 },
                         }}
                     >
                         <Typography variant="body2" color="text.secondary">
-                            {project.date}
+                            {formatDate(milestone.date)}@
                         </Typography>
                     </TimelineOppositeContent>
                     <TimelineSeparator
@@ -58,12 +83,14 @@ export default async function ProjectTimeline({ projectAPI }: ProjectTimelinePro
                                 visibility: index === 0 ? "hidden" : "visible",
                             }}
                         />
-                        <TimelineDot />
+                        <TimelineDot sx={{ fontSize: "1.2rem" }}>
+                            {getMilestoneIcon(milestone)}
+                        </TimelineDot>
                         <TimelineConnector
                             sx={{
                                 flex: 1,
                                 visibility:
-                                    index === projects.length - 1 ? "hidden" : "visible",
+                                    index === sortedMilestones.length - 1 ? "hidden" : "visible",
                             }}
                         />
                     </TimelineSeparator>
@@ -76,10 +103,11 @@ export default async function ProjectTimeline({ projectAPI }: ProjectTimelinePro
                             flex: 0,
                         }}
                     >
-                        <ProjectCard
-                            title={project.title}
-                            description={project.description}
-                            imageUrl={project.imageUrl}
+                        <MilestoneCard
+                            title={milestone.title}
+                            description={milestone.description}
+                            tags={milestone.tags}
+                            type={milestone.type}
                         />
                     </TimelineContent>
                 </TimelineItem>
