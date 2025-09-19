@@ -1,13 +1,13 @@
 import type { Milestone, MilestoneAPI } from '@/lib/types/milestone';
 
-// TODO: Replace this placeholder data with your actual milestones
 const staticMilestones: Milestone[] = [
     {
         title: "Completed Senior Capstone Project",
         date: new Date("2025-05-01"),
         description: "Completed capstone research on the viability of Non-Terrestrial Networks (NTN) for IoT applications. Sponsored by BI Inc.",
         tags: ["Next.js", "Arduino", "C/C++", "AWS", "Embedded", "Python", "Networking", "TCP/IP"],
-        type: { type: "milestone" }
+        type: { type: "milestone" },
+        body: "/markdown/capstone.md"
     },
     {
         title: "Graduated from the University of Colorado Boulder",

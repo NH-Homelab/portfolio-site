@@ -4,6 +4,7 @@ export type Milestone = {
     description?: string;
     tags: string[];
     type: MilestoneType;
+    body?: string;
 }
 
 export type MilestoneType =

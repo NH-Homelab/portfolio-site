@@ -99,16 +99,10 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
                             py: 4,
                             display: "flex",
                             justifyContent: "flex-start",
-                            width: { xs: "100%", sm: 500 },
-                            flex: 0,
+                            flex: 1,
                         }}
                     >
-                        <MilestoneCard
-                            title={milestone.title}
-                            description={milestone.description}
-                            tags={milestone.tags}
-                            type={milestone.type}
-                        />
+                        <MilestoneCard {...milestone} />
                     </TimelineContent>
                 </TimelineItem>
             ))}
