@@ -1,5 +1,8 @@
+"use client";
+
 import { MilestoneAPI, Milestone } from "@/lib/types/milestone";
-import { Typography, Chip, Box } from "@mui/material";
+import { Typography, Chip, Box, Theme, CircularProgress } from "@mui/material";
+import { useState, useEffect } from "react";
 
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -15,11 +18,30 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 
 interface MilestoneTimelineProps {
+    theme: Theme;
     milestoneAPI: MilestoneAPI;
 }
 
-export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimelineProps) {
-    const milestones = await milestoneAPI.getMilestones();
+export default function MilestoneTimeline({ theme, milestoneAPI }: MilestoneTimelineProps) {
+    const [milestones, setMilestones] = useState<Milestone[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchMilestones = async () => {
+            try {
+                setLoading(true);
+                const fetchedMilestones = await milestoneAPI.getMilestones();
+                setMilestones(fetchedMilestones);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to fetch milestones');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMilestones();
+    }, [milestoneAPI]);
 
     // Sort milestones by date (most recent first)
     const sortedMilestones = [...milestones].sort((a, b) =>
@@ -49,6 +71,37 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
         }
     };
 
+    // Handle loading state
+    if (loading) {
+        return (
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    // Handle error state
+    if (error) {
+        return (
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+                <Typography variant="body1" color="error">
+                    Error: {error}
+                </Typography>
+            </Box>
+        );
+    }
+
+    // Handle empty state
+    if (sortedMilestones.length === 0) {
+        return (
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+                <Typography variant="body1" color="text.secondary">
+                    No milestones found.
+                </Typography>
+            </Box>
+        );
+    }
+
     return (
         <Timeline
             position="right"
@@ -68,6 +121,9 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
                         sx={{
                             alignItems: "center",
                             display: "flex",
+                            [theme.breakpoints.down('sm')]: {
+                                display: "none",
+                            },
                             flex: "0 0 auto",
                             p: 0,
                             mr: 2,

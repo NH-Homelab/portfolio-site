@@ -17,7 +17,7 @@ import MarkdownRenderer from "../markdown-renderer/markdown-renderer";
 
 type MilestoneCardProps = Pick<
     Milestone,
-    "title" | "description" | "tags" | "type" | "body"
+    "title" | "description" | "tags" | "type" | "body" | "date"
 >;
 
 export default function MilestoneCard({
@@ -26,11 +26,21 @@ export default function MilestoneCard({
     tags,
     type,
     body,
+    date,
 }: MilestoneCardProps) {
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
+    };
+
+    // Format date for display
+    const formatDate = (date: Date): string => {
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
     };
 
     return (
@@ -46,7 +56,7 @@ export default function MilestoneCard({
             elevation={5}
         >
             <Stack
-                direction={"row"}
+                direction={{ xs: "column", sm: "row" }}
                 sx={{
                     alignItems: "stretch",
                     display: "flex",
@@ -64,6 +74,7 @@ export default function MilestoneCard({
                             objectFit: "cover",
                             borderRadius: 2,
                             m: 2,
+                            alignSelf: "center",
                         }}
                     />
                 )}
@@ -77,6 +88,9 @@ export default function MilestoneCard({
                 >
                     <Stack spacing={1} sx={{ flex: 1 }}>
                         <Typography variant="h6">{title}</Typography>
+                        <Typography variant="subtitle1" color="text.primary" sx={{ display: { sm: "none" }, fontStyle: "italic" }}>
+                            {formatDate(date)}
+                        </Typography>
                         <Typography
                             variant="body2"
                             sx={{
@@ -128,23 +142,25 @@ export default function MilestoneCard({
                 </CardContent>
             </Stack>
 
-            {body && body !== "" && (
-                <Collapse
-                    in={expanded}
-                    timeout={400}
-                    sx={{
-                        width: "100%",
-                    }}
-                >
-                    <div style={{
-                        padding: "0 16px 16px 16px",
-                        overflow: "hidden",
-                        wordBreak: "break-word"
-                    }}>
-                        <MarkdownRenderer url={body} />
-                    </div>
-                </Collapse>
-            )}
-        </Card>
+            {
+                body && body !== "" && (
+                    <Collapse
+                        in={expanded}
+                        timeout={400}
+                        sx={{
+                            width: "100%",
+                        }}
+                    >
+                        <div style={{
+                            padding: "0 16px 16px 16px",
+                            overflow: "hidden",
+                            wordBreak: "break-word"
+                        }}>
+                            <MarkdownRenderer url={body} />
+                        </div>
+                    </Collapse>
+                )
+            }
+        </Card >
     );
 }
