@@ -10,7 +10,7 @@
   min-height: 100svh;
   padding: 0 0;
   font-family: var(--font-geist-sans);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,7 +57,7 @@ a.secondary {
 
 @media (max-width: 600px) {
   .page {
-    padding: 32px;
+    /* padding: 32px; */
     padding-bottom: 80px;
   }
 
