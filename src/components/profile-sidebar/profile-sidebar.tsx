@@ -27,6 +27,7 @@ const collapsedWidth = 56;
 const StyledSidebar = styled(Paper, {
     shouldForwardProp: (prop) => prop !== "open",
 })<{ open: boolean }>(({ theme, open }) => ({
+    position: "relative",
     width: open ? "max(30vw, 300px)" : `${collapsedWidth}px`,
     overflow: "hidden",
     transition: theme.transitions.create("width", {
@@ -40,7 +41,7 @@ const StyledSidebar = styled(Paper, {
     backgroundColor: theme.palette.secondary.dark,
     display: "flex",
     flexDirection: "column",
-    height: "100vh",
+    height: "100%",
     border: "none",
     borderRadius: 0
 }));
@@ -77,21 +78,35 @@ export default function ProfileSidebar({ children }: { children?: React.ReactNod
 
     return (
         <StyledSidebar open={open}>
-            <Box sx={{ display: { xs: "none", sm: "flex" }, justifyContent: open ? "flex-end" : "center", p: 1 }}>
-                <IconButton sx={{ color: "text.secondary" }} onClick={handleToggle}>
-                    {open ? <ChevronLeftIcon /> : <MenuIcon />}
-                </IconButton>
-            </Box>
+            <IconButton
+                sx={{
+                    display: { xs: "none", sm: "flex" },
+                    position: "absolute",
+                    top: 8,
+                    right: open ? 8 : "50%",
+                    transform: open ? "none" : "translateX(50%)",
+                    color: "text.secondary",
+                    zIndex: 1,
+                    transition: (theme) => theme.transitions.create(["right", "transform"], {
+                        easing: theme.transitions.easing.sharp,
+                        duration: theme.transitions.duration.standard,
+                    })
+                }}
+                onClick={handleToggle}
+            >
+                {open ? <ChevronLeftIcon /> : <MenuIcon />}
+            </IconButton>
 
             <Box sx={{
                 display: "flex",
                 p: 2,
+                pt: 6, // Add top padding to account for the toggle button
                 flexDirection: "column",
                 gap: 2,
                 alignItems: "center",
                 width: { xs: "100%", sm: "max(30vw, 300px)" },
                 minWidth: { xs: "100%", sm: "300px" },
-                height: "100%",
+                flex: 1, // Take up remaining space
                 opacity: open ? 1 : 0,
                 transition: (theme) => theme.transitions.create("opacity", {
                     easing: theme.transitions.easing.sharp,
@@ -100,7 +115,12 @@ export default function ProfileSidebar({ children }: { children?: React.ReactNod
             }}>
                 {children}
             </Box>
-            <Box sx={{ marginTop: "auto", p: 2 }}>
+            <Box sx={{
+                p: 2,
+                pb: 3,
+                mt: "auto", // Push to bottom using margin auto
+                backgroundColor: "inherit"
+            }}>
                 <Stack direction={open ? "row" : "column"} sx={{ display: "flex", gap: 2, alignItems: "center", justifyContent: "center" }}>
                     <Tooltip title="GitHub" placement="right" arrow open={!open && transitionComplete}>
                         <IconButton
