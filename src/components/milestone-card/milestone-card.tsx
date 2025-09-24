@@ -53,7 +53,7 @@ export default function MilestoneCard({
                     width: "100%",
                 }}
             >
-                {(type.type === "project" || type.type === "certificate") && (
+                {"imgUrl" in type && type.imgUrl != null && type.imgUrl.trim() !== "" && (
                     <CardMedia
                         component="img"
                         image={type.imgUrl}

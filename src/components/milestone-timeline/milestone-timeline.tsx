@@ -10,6 +10,10 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import { TimelineOppositeContent } from "@mui/lab";
 import MilestoneCard from "../milestone-card/milestone-card";
 
+import SchoolIcon from '@mui/icons-material/School';
+import TerminalIcon from '@mui/icons-material/Terminal';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+
 interface MilestoneTimelineProps {
     milestoneAPI: MilestoneAPI;
 }
@@ -34,9 +38,11 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
     const getMilestoneIcon = (milestone: Milestone) => {
         switch (milestone.type.type) {
             case "certificate":
-                return "🎓";
+                return <SchoolIcon color={"primary"} />;
             case "project":
-                return "💼";
+                return <TerminalIcon color={"primary"} />;
+            case "work":
+                return <BusinessCenterIcon color={"primary"} />;
             case "milestone":
             default:
                 return "🎯";
@@ -68,7 +74,7 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
                         }}
                     >
                         <Typography variant="body2" color="text.secondary">
-                            {formatDate(milestone.date)}@
+                            {formatDate(milestone.date)}
                         </Typography>
                     </TimelineOppositeContent>
                     <TimelineSeparator
@@ -81,14 +87,16 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
                             sx={{
                                 flex: 1,
                                 visibility: index === 0 ? "hidden" : "visible",
+                                bgcolor: "secondary.main",
                             }}
                         />
-                        <TimelineDot sx={{ fontSize: "1.2rem" }}>
+                        <TimelineDot variant={"outlined"} color={"secondary"} sx={{ fontSize: "1.2rem", p: 1 }}>
                             {getMilestoneIcon(milestone)}
                         </TimelineDot>
                         <TimelineConnector
                             sx={{
                                 flex: 1,
+                                bgcolor: "secondary.main",
                                 visibility:
                                     index === sortedMilestones.length - 1 ? "hidden" : "visible",
                             }}

@@ -6,7 +6,7 @@ const staticMilestones: Milestone[] = [
         date: new Date("2025-05-01"),
         description: "Completed capstone research on the viability of Non-Terrestrial Networks (NTN) for IoT applications. Sponsored by BI Inc.",
         tags: ["Next.js", "Arduino", "C/C++", "AWS", "Embedded", "Python", "Networking", "TCP/IP"],
-        type: { type: "milestone" },
+        type: { type: "project", projectId: 2 },
         body: "/markdown/capstone.md"
     },
     {
@@ -47,8 +47,7 @@ const staticMilestones: Milestone[] = [
         description: "Worked as an IT summer intern at Douglas County School District, gaining hands-on experience in IT support and infrastructure.",
         tags: ["Agile", "SQL", "Java", "Tableau", "Git", "Spring Boot"],
         type: {
-            type: "project",
-            projectId: 1,
+            type: "work",
             imgUrl: "/dcsd.png",
         }
     }

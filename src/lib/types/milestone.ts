@@ -10,7 +10,8 @@ export type Milestone = {
 export type MilestoneType =
     | { type: "milestone"; }
     | { type: "certificate"; imgUrl?: string; link?: string }
-    | { type: "project"; projectId: number; imgUrl?: string; link?: string };
+    | { type: "project"; projectId: number; imgUrl?: string; link?: string }
+    | { type: "work"; imgUrl?: string; };
 
 export type MilestoneAPI = {
     getMilestones(): Promise<Milestone[]>;

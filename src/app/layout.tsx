@@ -19,6 +19,14 @@ const geistMono = Geist_Mono({
 const theme = createTheme({
   palette: {
     mode: "light",
+    primary: {
+      main: "#233950"
+    },
+    secondary: {
+      main: "#7E91A5",
+      light: "#B4C1CF",
+      dark: "#49617A"
+    }
   },
 });
 
