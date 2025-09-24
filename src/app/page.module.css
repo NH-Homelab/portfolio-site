@@ -10,6 +10,7 @@
   min-height: 100svh;
   padding: 0 0;
   font-family: var(--font-geist-sans);
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,7 +28,6 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: center;
   gap: 20px;
 }
 
