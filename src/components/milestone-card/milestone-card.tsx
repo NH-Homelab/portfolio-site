@@ -41,7 +41,6 @@ export default function MilestoneCard({
                 transition: "height 0.3s ease-in-out",
                 overflow: "hidden",
                 width: "100%",
-                maxWidth: 650,
                 color: "text.primary",
             }}
             elevation={5}
@@ -64,7 +63,7 @@ export default function MilestoneCard({
                             height: 140,
                             objectFit: "cover",
                             borderRadius: 2,
-                            m: 1,
+                            m: 2,
                         }}
                     />
                 )}
