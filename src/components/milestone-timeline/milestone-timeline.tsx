@@ -54,10 +54,11 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
             position="right"
             sx={{
                 flexGrow: 0,
+                width: "100%",
                 "& .MuiTimelineItem-root": {
                     minHeight: "auto",
                     "&::before": { display: "none" },
-                    width: "fit-content",
+                    width: "100%",
                 },
             }}
         >
@@ -73,7 +74,7 @@ export default async function MilestoneTimeline({ milestoneAPI }: MilestoneTimel
                             width: { xs: 80, sm: 100 },
                         }}
                     >
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.primary">
                             {formatDate(milestone.date)}
                         </Typography>
                     </TimelineOppositeContent>

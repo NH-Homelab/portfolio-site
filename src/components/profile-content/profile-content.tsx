@@ -1,22 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Typography, Box, Avatar, Paper, IconButton, Tooltip, Divider } from "@mui/material";
-
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
-
+import { Typography, Box, Avatar, Paper, IconButton, Tooltip } from "@mui/material";
 
 export default function ProfileContent() {
-    const email = "Nicholas.Henley@proton.me";
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500); // reset tooltip after 1.5s
-    };
 
     return (
         <>
@@ -28,9 +15,10 @@ export default function ProfileContent() {
                 textAlign: "center",
                 width: "100%",
                 gap: 6,
+                color: "text.secondary",
             }}>
                 <Paper
-                    elevation={7}
+                    elevation={10}
                     sx={{
                         borderRadius: "50%",
                     }}
@@ -48,51 +36,18 @@ export default function ProfileContent() {
                         }}
                     />
                 </Paper>
-                <Typography variant="h4" component="h1">
-                    Nick Henley
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, width: "100%" }}>
-                    <Divider sx={{ width: "60%" }} />
-                    <Typography variant="body1">
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1, width: "100%" }}>
+                    <Typography variant="h3" component="h1">
+                        Nick Henley
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ fontStyle: "italic" }}>
                         Software Engineer | Broomfield, CO
                     </Typography>
-                    <Divider sx={{ width: "60%" }} />
                 </Box>
 
-                <Typography variant="body2" sx={{ fontStyle: "italic", px: 4, lineHeight: 1.5 }}>
+                <Typography variant="body1" sx={{ fontStyle: "bold", px: 4, lineHeight: 1.5 }}>
                     I recently graduated from the University of Colorado Boulder and love building things—from full-stack apps to running my own homelab with containers and VMs. I've been learning Kubernetes and GitHub workflows for automatic deployment, and I'm interested in cybersecurity, AI, and embedded systems. In college, I helped create apps and websites for nonprofits through Blueprint Boulder. Outside of tech, I enjoy hiking, reading, gaming, and watching TV.
                 </Typography>
-            </Box>
-            <Box component="footer" sx={{ display: "flex", gap: 2 }}>
-                <IconButton
-                    component="a"
-                    href="https://github.com/nh602"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <GitHubIcon sx={{
-                        fontSize: 32,
-                    }} />
-                </IconButton>
-                <IconButton
-                    component="a"
-                    href="https://linkedin.com/in/nhenley"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <LinkedInIcon sx={{
-                        fontSize: 32,
-                    }} />
-                </IconButton>
-                <Tooltip title={copied ? "Copied!" : email} arrow>
-                    <span>
-                        <IconButton onClick={handleCopy}>
-                            <EmailIcon sx={{
-                                fontSize: 32,
-                            }} />
-                        </IconButton>
-                    </span>
-                </Tooltip>
             </Box>
         </>
     );

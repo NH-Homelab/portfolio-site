@@ -15,10 +15,11 @@ export default function Home() {
         <Box sx={{
           flexGrow: 1,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "left",
           overflowY: "auto",
           height: "100vh",
           maxHeight: "100vh",
+          mx: 6,
         }}>
           <MilestoneTimeline milestoneAPI={staticMilestoneAPI} />
         </Box>

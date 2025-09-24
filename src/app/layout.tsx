@@ -26,8 +26,17 @@ const theme = createTheme({
       main: "#7E91A5",
       light: "#B4C1CF",
       dark: "#49617A"
+    },
+    text: {
+      primary: "#121212",
+      secondary: "#fff",
     }
   },
+  typography: {
+    body1: {
+      fontSize: "1.1rem",
+    }
+  }
 });
 
 export default function RootLayout({
