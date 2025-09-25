@@ -1,4 +1,7 @@
 ##### BI Inc Senior Capstone
+
+---
+
 **Purpose** -- To evaluate the viability of Non-Terrestrial Networks (NTN) for IoT applications.
 
 **Deliverables** --
@@ -10,6 +13,8 @@
 * A frontend to display and analyze the collected data
 
 **Process** -- We split our team into 3 groups: an arduino team, an AWS team, and a frontend team. By agreeing on data structures and communication schemes from the beginning, we were able to develop the three major deliverables concurrently. This was essential to finish the project under a time constraint from the school year (~8 months) as well as our responsibilities to other courses. 
+
+---
 
 **Arduino Program** -- I was on the Arduino team and was tasked with interfacing with our **Monogoto Modem** kit. When we were handed the kit, the sponsor told us they were only able to get it to send data once. It was essential that we had plenty of time to test the device over many months. 
 

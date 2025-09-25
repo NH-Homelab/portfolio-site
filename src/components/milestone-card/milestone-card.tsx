@@ -11,9 +11,11 @@ import {
     IconButton,
 } from "@mui/material";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Milestone } from "@/lib/types/milestone";
 import MarkdownRenderer from "../markdown-renderer/markdown-renderer";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 type MilestoneCardProps = Pick<
     Milestone,
@@ -87,7 +89,21 @@ export default function MilestoneCard({
                     }}
                 >
                     <Stack spacing={1} sx={{ flex: 1 }}>
-                        <Typography variant="h6">{title}</Typography>
+                        <Stack direction="row" justifyContent="space-between" alignItems="center">
+                            <Typography variant="h6">{title}</Typography>
+                            {
+                                "link" in type && type.link && type.link.trim() !== "" ? (
+                                    <IconButton
+                                        component="a"
+                                        href={type.link}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <GitHubIcon />
+                                    </IconButton>
+                                ) : null
+                            }
+                        </Stack>
                         <Typography variant="subtitle1" color="text.primary" sx={{ display: { sm: "none" }, fontStyle: "italic" }}>
                             {formatDate(date)}
                         </Typography>
