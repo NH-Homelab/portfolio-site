@@ -2,6 +2,14 @@ import type { Milestone, MilestoneAPI } from '@/lib/types/milestone';
 
 const staticMilestones: Milestone[] = [
     {
+        title: "Ansible Playbooks",
+        date: new Date("2025-11-18"),
+        description: "Created ansible playbooks to help automate routine tasks. Enables quickly spinning up new VM's and environments on my Proxmox host.",
+        tags: ["Ansible", "Devops", "Kubernetes", "Minikube", "Docker", "Virtual Machines"],
+        type: { type: "project", projectId: 12, link: "https://github.com/NH-Homelab/Ansible", imgUrl: "/ansible.png" },
+        body: "/markdown/ansible.md"
+    },
+    {
         title: "Portfolio Site",
         date: new Date("2025-09-01"),
         description: "Developed a personal portfolio website to showcase projects and skills using Next.js and Material-UI.",
