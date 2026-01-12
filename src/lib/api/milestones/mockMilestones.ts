@@ -6,7 +6,7 @@ const mockMilestones: Milestone[] = [
         date: new Date("2023-05-15"),
         description: "Bachelor's degree in Computer Science with focus on software engineering and algorithms",
         tags: ["education", "degree", "computer-science"],
-        type: { type: "milestone" }
+        type: { type: "career" }
     },
     {
         title: "AWS Solutions Architect",
@@ -14,7 +14,7 @@ const mockMilestones: Milestone[] = [
         description: "Achieved AWS Solutions Architect Associate certification with focus on cloud infrastructure design",
         tags: ["aws", "cloud", "certification", "architecture"],
         type: {
-            type: "certificate",
+            type: "career",
             imgUrl: "https://picsum.photos/400/300?random=101",
             link: "https://aws.amazon.com/certification/"
         }
@@ -25,7 +25,7 @@ const mockMilestones: Milestone[] = [
         description: "Completed advanced React certification covering hooks, context, and performance optimization",
         tags: ["react", "frontend", "certification", "javascript"],
         type: {
-            type: "certificate",
+            type: "career",
             imgUrl: "https://picsum.photos/400/300?random=102",
             link: "https://reactjs.org/community/conferences.html"
         }
@@ -36,7 +36,7 @@ const mockMilestones: Milestone[] = [
         description: "Built and deployed personal portfolio using Next.js, TypeScript, and Material-UI",
         tags: ["web", "nextjs", "typescript", "portfolio"],
         type: {
-            type: "project",
+            type: "project_major",
             projectId: 1,
             imgUrl: "https://picsum.photos/400/300?random=103",
             link: "https://github.com/username/portfolio"
@@ -47,7 +47,7 @@ const mockMilestones: Milestone[] = [
         date: new Date("2024-03-01"),
         description: "Joined as a Full Stack Developer working on cloud-native applications",
         tags: ["career", "fullstack", "employment"],
-        type: { type: "milestone" }
+        type: { type: "career" }
     },
     {
         title: "E-commerce Platform",
@@ -55,7 +55,7 @@ const mockMilestones: Milestone[] = [
         description: "Led development of microservices-based e-commerce platform with React and Node.js",
         tags: ["ecommerce", "microservices", "react", "nodejs"],
         type: {
-            type: "project",
+            type: "project_major",
             projectId: 2,
             imgUrl: "https://picsum.photos/400/300?random=104",
             link: "https://github.com/username/ecommerce-platform"
@@ -67,7 +67,7 @@ const mockMilestones: Milestone[] = [
         description: "Earned container orchestration certification covering DevOps best practices",
         tags: ["docker", "kubernetes", "devops", "certification"],
         type: {
-            type: "certificate",
+            type: "career",
             imgUrl: "https://picsum.photos/400/300?random=105",
             link: "https://kubernetes.io/training/"
         }
@@ -77,7 +77,7 @@ const mockMilestones: Milestone[] = [
         date: new Date("2024-09-01"),
         description: "Major contribution to popular React component library with 10k+ GitHub stars",
         tags: ["opensource", "react", "community", "github"],
-        type: { type: "milestone" }
+        type: { type: "career" }
     }
 ];
 
