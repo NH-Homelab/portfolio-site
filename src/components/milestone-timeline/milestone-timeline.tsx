@@ -52,8 +52,9 @@ export default function MilestoneTimeline({ theme, milestoneAPI }: MilestoneTime
     const formatDate = (date: Date): string => {
         return date.toLocaleDateString('en-US', {
             year: 'numeric',
-            month: 'short',
-            day: 'numeric'
+            month: 'long',
+            day: undefined,
+            timeZone: 'UTC'
         });
     };
 
@@ -120,6 +121,7 @@ export default function MilestoneTimeline({ theme, milestoneAPI }: MilestoneTime
                     <TimelineOppositeContent
                         sx={{
                             alignItems: "center",
+                            justifyContent: "right",
                             display: "flex",
                             [theme.breakpoints.down('sm')]: {
                                 display: "none",
@@ -128,9 +130,19 @@ export default function MilestoneTimeline({ theme, milestoneAPI }: MilestoneTime
                             p: 0,
                             mr: 2,
                             width: { xs: 80, sm: 100 },
+                            overflow: "visible"
                         }}
                     >
-                        <Typography variant="body2" color="text.primary">
+                        <Typography
+                            variant="body2"
+                            color="text.primary"
+                            sx={{
+                                whiteSpace: "nowrap",
+                                overflow: "visible",
+                                textOverflow: "ellipsis",
+                                display: "block"
+                            }}
+                        >
                             {formatDate(milestone.date)}
                         </Typography>
                     </TimelineOppositeContent>
