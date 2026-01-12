@@ -9,29 +9,38 @@ export class MilestoneAPI implements MilestoneApiInterface {
         switch (apiMilestone.milestone_type) {
             case 'project_major':
                 type = {
-                    type: 'project',
+                    type: 'project_major',
                     projectId: apiMilestone.project_id,
                     imgUrl: apiMilestone.image_url || undefined,
                     link: apiMilestone.github_url || undefined
                 };
                 break;
-            case 'certificate':
+            case 'project_minor':
                 type = {
-                    type: 'certificate',
+                    type: 'project_minor',
+                    projectId: apiMilestone.project_id,
                     imgUrl: apiMilestone.image_url || undefined,
                     link: apiMilestone.github_url || undefined
                 };
                 break;
             case 'career':
-            case 'education':
-            case 'work':
                 type = {
-                    type: 'work',
-                    imgUrl: apiMilestone.image_url || undefined
+                    type: 'career',
+                    imgUrl: apiMilestone.image_url || undefined,
+                    link: apiMilestone.github_url || undefined
+                };
+                break;
+            case 'education':
+                type = {
+                    type: 'education',
+                    imgUrl: apiMilestone.image_url || undefined,
+                    link: apiMilestone.github_url || undefined
                 };
                 break;
             default:
-                type = { type: 'milestone' };
+                // ApiMilestoneSchema restricts milestone_type to known values,
+                // so this branch should be unreachable. Provide a safe fallback.
+                type = { type: 'career', imgUrl: apiMilestone.image_url || undefined };
         }
 
         return {
