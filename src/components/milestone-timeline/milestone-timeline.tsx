@@ -59,13 +59,13 @@ export default function MilestoneTimeline({ theme, milestoneAPI }: MilestoneTime
 
     const getMilestoneIcon = (milestone: Milestone) => {
         switch (milestone.type.type) {
-            case "certificate":
+            case "education":
                 return <SchoolIcon color={"primary"} />;
-            case "project":
+            case "project_major":
+            case "project_minor":
                 return <TerminalIcon color={"primary"} />;
-            case "work":
+            case "career":
                 return <BusinessCenterIcon color={"primary"} />;
-            case "milestone":
             default:
                 return "🎯";
         }

@@ -6,7 +6,8 @@ import ProfileSidebar from "@/components/profile-sidebar/profile-sidebar";
 import ProfileContent from "@/components/profile-content/profile-content";
 import { Box, Grid, useTheme, useMediaQuery } from "@mui/material";
 import MilestoneTimeline from "@/components/milestone-timeline/milestone-timeline";
-import { staticMilestoneAPI } from "@/lib/api/milestones/staticMilestones";
+// import { staticMilestoneAPI } from "@/lib/api/milestones/staticMilestones";
+import { milestoneAPI } from "@/lib/api/milestones/milestoneAPI";
 
 export default function Home() {
   const theme = useTheme();
@@ -40,7 +41,7 @@ export default function Home() {
             </ProfileSidebar>
           </Grid>
           <Grid size={{ xs: 12, md: "grow" }} sx={{ height: "100%", overflowY: { xs: "visible", sm: "scroll" } }}>
-            <MilestoneTimeline milestoneAPI={staticMilestoneAPI} theme={theme} />
+            <MilestoneTimeline milestoneAPI={milestoneAPI} theme={theme} />
           </Grid>
         </Grid>
       </main>

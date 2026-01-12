@@ -1,18 +1,10 @@
-export type Milestone = {
-    title: string;
-    date: Date;
-    description?: string;
-    tags: string[];
-    type: MilestoneType;
-    body?: string;
-}
+// Re-export types from schema (single source of truth)
+export type { Milestone, MilestoneType } from './milestone.schema';
 
-export type MilestoneType =
-    | { type: "milestone"; }
-    | { type: "certificate"; imgUrl?: string; link?: string }
-    | { type: "project"; projectId: number; imgUrl?: string; link?: string }
-    | { type: "work"; imgUrl?: string; };
+// Import for use in MilestoneAPI interface
+import type { Milestone } from './milestone.schema';
 
+// MilestoneAPI interface (not validated at runtime, so kept here)
 export type MilestoneAPI = {
     getMilestones(): Promise<Milestone[]>;
     addMilestone(milestone: Milestone): Promise<Milestone>;
